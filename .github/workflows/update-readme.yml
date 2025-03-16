@@ -1,0 +1,33 @@
+name: Update README with Latest YouTube Video
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"  # Runs every 6 hours
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Fetch Latest YouTube Video
+        run: |
+          LATEST_VIDEO=$(curl -s "https://www.youtube.com/feeds/videos.xml?channel_id=UCy338aNvMsAaWKwXrctaYdw" | \
+          grep -oPm1 "(?<=<yt:videoId>)[^<]+")
+          
+          echo "Latest Video ID: $LATEST_VIDEO"
+
+          # Replace the video ID in README.md
+          sed -i "s|https://img.youtube.com/vi/[^/]*/maxresdefault.jpg|https://img.youtube.com/vi/$LATEST_VIDEO/maxresdefault.jpg|g" README.md
+          sed -i "s|https://www.youtube.com/watch?v=[^)]*|https://www.youtube.com/watch?v=$LATEST_VIDEO|g" README.md
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Updated README with latest YouTube video" || echo "No changes to commit"
+          git push
