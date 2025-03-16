@@ -1,10 +1,33 @@
-- 👋 Hi, I’m @CryptooChai
-- 👀 I’m interested in Cryptocurrency
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
+# Hi there! 👋
+
+Welcome to my GitHub! I'm passionate about **cryptocurrency, blockchain, and security**. Here, you'll find projects, resources, and insights related to the evolving world of decentralized technology.
+
+## 🚀 About Me
+
+- 🎥 Creating YouTube videos on cryptocurrency, blockchain security, hacked exchanges, and emerging threats in the crypto space.
+- 🔐 Focused on blockchain security and smart contract auditing.
+- 📈 Exploring DeFi, NFTs, and Web3 development.
+
+
+## 📺 Latest YouTube Video
+
+[![SUBSCRIBE](https://img.shields.io/badge/YouTube-Subscribe-red?style=flat&logo=youtube)](https://www.youtube.com/channel/CryptooChai?sub_confirmation=1)
+
+[![Latest Video](https://img.youtube.com/vi/u36sH6LuFv0/maxresdefault.jpg)](https://www.youtube.com/watch?v=u36sH6LuFv0)
+
+
+## 🌐 Connect With Me
 
 <!---
-CryptooChai/CryptooChai is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+[![Twitter](https://img.shields.io/badge/Twitter-@CryptooChai-blue?style=flat&logo=twitter)](https://twitter.com/CryptooChai)
+[![Telegram](https://img.shields.io/badge/Telegram-@CryptooChai-blue?style=flat&logo=telegram)](https://t.me/CryptooChai)
+[![Instagram](https://img.shields.io/badge/Instagram-@CryptooChai-purple?style=flat&logo=instagram)](https://instagram.com/CryptooChai)
+-->
+
+<a href="https://twitter.com/CryptooChai" target='_blank'> <img src="https://img.shields.io/badge/Twitter-@CryptooChai-blue?style=flat&logo=twitter"/> </a>
+<a href="https://t.me/CryptooChai" target="_blank"> <img src="https://img.shields.io/badge/Telegram-@CryptooChai-blue?style=flat&logo=telegram"/> </a>
+<a href="https://instagram.com/CryptooChai" target="_blank"> <img src="https://img.shields.io/badge/Instagram-@CryptooChai-purple?style=flat&logo=instagram"/> </a>
+
+
+---
+🔗 **Stay updated with my latest videos and projects!**
