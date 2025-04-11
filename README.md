@@ -13,7 +13,7 @@ Welcome to my GitHub! I'm passionate about **cryptocurrency, blockchain, and sec
 
 [![SUBSCRIBE](https://img.shields.io/badge/YouTube-Subscribe-red?style=flat&logo=youtube)](https://www.youtube.com/channel/CryptooChai?sub_confirmation=1)
 
-[![Latest Video](https://img.youtube.com/vi/mhCadhut4qY/maxresdefault.jpg)](https://www.youtube.com/watch?v=mhCadhut4qY)
+[![Latest Video](https://img.youtube.com/vi/az-SCXnHnt8/maxresdefault.jpg)](https://www.youtube.com/watch?v=az-SCXnHnt8)
 
 
 ## 🌐 Connect With Me
