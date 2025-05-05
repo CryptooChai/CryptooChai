@@ -1,8 +1,8 @@
-# Hi there! 👋
+# Hi There! 👋
 
-Welcome to my GitHub! I'm passionate about **cryptocurrency, blockchain, and security**. Here, you'll find projects, resources, and insights related to the evolving world of decentralized technology.
+Welcome to CryptooChai's GitHub page! We are passionate about **cryptocurrency, blockchain, and security**. Here, you'll find projects, resources, and insights related to the evolving world of decentralized technology.
 
-## 🚀 About Me
+## 🚀 About CryptooChai
 
 - 🎥 Creating YouTube videos on cryptocurrency, blockchain security, hacked exchanges, and emerging threats in the crypto space.
 - 🔐 Focused on blockchain security and smart contract auditing.
@@ -16,13 +16,7 @@ Welcome to my GitHub! I'm passionate about **cryptocurrency, blockchain, and sec
 [![Latest Video](https://img.youtube.com/vi/fcE85t3Wy3Q/maxresdefault.jpg)](https://www.youtube.com/watch?v=fcE85t3Wy3Q)
 
 
-## 🌐 Connect With Me
-
-<!---
-[![Twitter](https://img.shields.io/badge/Twitter-@CryptooChai-blue?style=flat&logo=twitter)](https://twitter.com/CryptooChai)
-[![Telegram](https://img.shields.io/badge/Telegram-@CryptooChai-blue?style=flat&logo=telegram)](https://t.me/CryptooChai)
-[![Instagram](https://img.shields.io/badge/Instagram-@CryptooChai-purple?style=flat&logo=instagram)](https://instagram.com/CryptooChai)
--->
+## 🌐 Connect With Us
 
 <a href="https://twitter.com/CryptooChai" target='_blank'> <img src="https://img.shields.io/badge/Twitter-@CryptooChai-blue?style=flat&logo=twitter"/> </a>
 <a href="https://t.me/CryptooChai" target="_blank"> <img src="https://img.shields.io/badge/Telegram-@CryptooChai-blue?style=flat&logo=telegram"/> </a>
