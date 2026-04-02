@@ -13,7 +13,7 @@ Welcome to CryptooChai's GitHub page! We are passionate about **cryptocurrency, 
 
 [![SUBSCRIBE](https://img.shields.io/badge/YouTube-Subscribe-red?style=flat&logo=youtube)](https://www.youtube.com/channel/CryptooChai?sub_confirmation=1)
 
-[![Latest Video](https://img.youtube.com/vi/5ajWeXz3wqk/maxresdefault.jpg)](https://www.youtube.com/watch?v=5ajWeXz3wqk)
+[![Latest Video](https://img.youtube.com/vi/SS6c-mKvCYE/maxresdefault.jpg)](https://www.youtube.com/watch?v=SS6c-mKvCYE)
 
 
 ## 🌐 Connect With Us
