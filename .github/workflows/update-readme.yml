@@ -15,8 +15,16 @@ jobs:
 
       - name: Fetch Latest YouTube Video
         run: |
-          FEED_XML=$(curl -fsSL --retry 3 --retry-delay 2 --connect-timeout 10 --max-time 30 \
-            "https://www.youtube.com/feeds/videos.xml?channel_id=UCy338aNvMsAaWKwXrctaYdw")
+          FEED_URL="https://www.youtube.com/feeds/videos.xml?channel_id=UCy338aNvMsAaWKwXrctaYdw"
+          FEED_XML=$(curl -sSL --retry 3 --retry-delay 2 --connect-timeout 10 --max-time 30 \
+            -A "Mozilla/5.0" -w $'\n%{http_code}' "$FEED_URL")
+          FEED_STATUS=$(printf '%s' "$FEED_XML" | tail -n1)
+          FEED_XML=$(printf '%s' "$FEED_XML" | sed '$d')
+
+          if [ "$FEED_STATUS" != "200" ]; then
+            echo "YouTube feed returned HTTP $FEED_STATUS. Skipping README update."
+            exit 0
+          fi
 
           LATEST_VIDEO=$(printf '%s' "$FEED_XML" | grep -oPm1 "(?<=<yt:videoId>)[^<]+" || true)
 
