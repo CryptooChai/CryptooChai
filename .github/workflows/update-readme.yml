@@ -15,14 +15,26 @@ jobs:
 
       - name: Fetch Latest YouTube Video
         run: |
-          FEED_URL="https://www.youtube.com/feeds/videos.xml?channel_id=UCy338aNvMsAaWKwXrctaYdw"
-          FEED_XML=$(curl -sSL --retry 3 --retry-delay 2 --connect-timeout 10 --max-time 30 \
-            -A "Mozilla/5.0" -w $'\n%{http_code}' "$FEED_URL")
-          FEED_STATUS=$(printf '%s' "$FEED_XML" | tail -n1)
-          FEED_XML=$(printf '%s' "$FEED_XML" | sed '$d')
+          FEED_XML=""
+          FEED_URL_PRIMARY="https://www.youtube.com/feeds/videos.xml?channel_id=UCy338aNvMsAaWKwXrctaYdw"
+          FEED_URL_FALLBACK="https://www.youtube.com/feeds/videos.xml?playlist_id=UUy338aNvMsAaWKwXrctaYdw"
 
-          if [ "$FEED_STATUS" != "200" ]; then
-            echo "YouTube feed returned HTTP $FEED_STATUS. Skipping README update."
+          for FEED_URL in "$FEED_URL_PRIMARY" "$FEED_URL_FALLBACK"; do
+            FEED_RESPONSE=$(curl -sSL --retry 3 --retry-delay 2 --connect-timeout 10 --max-time 30 \
+              -A "Mozilla/5.0" -H "Accept: application/atom+xml" -w $'\n%{http_code}' "$FEED_URL")
+            FEED_STATUS=$(printf '%s' "$FEED_RESPONSE" | tail -n1)
+            FEED_BODY=$(printf '%s' "$FEED_RESPONSE" | sed '$d')
+
+            if [ "$FEED_STATUS" = "200" ] && printf '%s' "$FEED_BODY" | grep -q "<feed"; then
+              FEED_XML="$FEED_BODY"
+              break
+            fi
+
+            echo "Feed endpoint returned HTTP $FEED_STATUS: $FEED_URL"
+          done
+
+          if [ -z "$FEED_XML" ]; then
+            echo "Could not fetch a valid YouTube feed from available endpoints. Skipping README update."
             exit 0
           fi
 
