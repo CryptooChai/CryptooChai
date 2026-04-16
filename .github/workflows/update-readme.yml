@@ -15,8 +15,20 @@ jobs:
 
       - name: Fetch Latest YouTube Video
         run: |
-          LATEST_VIDEO=$(curl -s "https://www.youtube.com/feeds/videos.xml?channel_id=UCy338aNvMsAaWKwXrctaYdw" | \
-          grep -oPm1 "(?<=<yt:videoId>)[^<]+")
+          FEED_XML=$(curl -fsSL --retry 3 --retry-delay 2 --connect-timeout 10 --max-time 30 \
+            "https://www.youtube.com/feeds/videos.xml?channel_id=UCy338aNvMsAaWKwXrctaYdw")
+
+          LATEST_VIDEO=$(printf '%s' "$FEED_XML" | grep -oPm1 "(?<=<yt:videoId>)[^<]+" || true)
+
+          # Fallback: some feeds expose the video ID only inside <id>yt:video:...<\/id>
+          if [ -z "$LATEST_VIDEO" ]; then
+            LATEST_VIDEO=$(printf '%s' "$FEED_XML" | grep -oPm1 "(?<=<id>yt:video:)[^<]+" || true)
+          fi
+
+          if [ -z "$LATEST_VIDEO" ] || ! printf '%s' "$LATEST_VIDEO" | grep -Eq '^[A-Za-z0-9_-]{11}$'; then
+            echo "Could not parse latest video ID from YouTube feed. Skipping README update."
+            exit 0
+          fi
           
           echo "Latest Video ID: $LATEST_VIDEO"
 
