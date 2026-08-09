@@ -15,8 +15,40 @@ jobs:
 
       - name: Fetch Latest YouTube Video
         run: |
-          LATEST_VIDEO=$(curl -s "https://www.youtube.com/feeds/videos.xml?channel_id=UCy338aNvMsAaWKwXrctaYdw" | \
-          grep -oPm1 "(?<=<yt:videoId>)[^<]+")
+          FEED_XML=""
+          FEED_URL_PRIMARY="https://www.youtube.com/feeds/videos.xml?channel_id=UCy338aNvMsAaWKwXrctaYdw"
+          FEED_URL_FALLBACK="https://www.youtube.com/feeds/videos.xml?playlist_id=UUy338aNvMsAaWKwXrctaYdw"
+
+          for FEED_URL in "$FEED_URL_PRIMARY" "$FEED_URL_FALLBACK"; do
+            FEED_RESPONSE=$(curl -sSL --retry 3 --retry-delay 2 --connect-timeout 10 --max-time 30 \
+              -A "Mozilla/5.0" -H "Accept: application/atom+xml" -w $'\n%{http_code}' "$FEED_URL")
+            FEED_STATUS=$(printf '%s' "$FEED_RESPONSE" | tail -n1)
+            FEED_BODY=$(printf '%s' "$FEED_RESPONSE" | sed '$d')
+
+            if [ "$FEED_STATUS" = "200" ] && grep -q "<feed" <<< "$FEED_BODY"; then
+              FEED_XML="$FEED_BODY"
+              break
+            fi
+
+            echo "Feed endpoint returned HTTP $FEED_STATUS: $FEED_URL"
+          done
+
+          if [ -z "$FEED_XML" ]; then
+            echo "Could not fetch a valid YouTube feed from available endpoints. Skipping README update."
+            exit 0
+          fi
+
+          LATEST_VIDEO=$(grep -oPm1 "(?<=<yt:videoId>)[^<]+" <<< "$FEED_XML" || true)
+
+          # Fallback: some feeds expose the video ID only inside <id>yt:video:...<\/id>
+          if [ -z "$LATEST_VIDEO" ]; then
+            LATEST_VIDEO=$(grep -oPm1 "(?<=<id>yt:video:)[^<]+" <<< "$FEED_XML" || true)
+          fi
+
+          if [ -z "$LATEST_VIDEO" ] || ! grep -Eq '^[A-Za-z0-9_-]{11}$' <<< "$LATEST_VIDEO"; then
+            echo "Could not parse latest video ID from YouTube feed. Skipping README update."
+            exit 0
+          fi
           
           echo "Latest Video ID: $LATEST_VIDEO"
 
